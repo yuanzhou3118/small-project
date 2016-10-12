@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+	<title>派对最夯装备</title>
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+		.r, .r .iwant { display: block; }
+	</style>
+</head>
+<body>
+	
+	<section class="r">
+		<div class="r1">
+			<img src="img/r/italy.png" alt="italy">
+		</div>
+		<div class="r2">
+			<img src="img/r/france.png" alt="france">
+		</div>
+		<div class="r3">
+			<img src="img/r/germany.png" alt="germany">
+		</div>
+		<div class="r4">
+			<img src="img/r/spain.png" alt="spain">
+		</div>
+		<ul class="iwant"><li><span></span></li></ul>
+	</section>
+	<section class="x">
+		<img src="img/x/qrcode.png" alt="qrcode">
+	</section>
+	
+	<script type="text/javascript" src="js/lib/zepto.min.js"></script>
+	<script type="text/javascript" src="js/lib/fastclick.min.js"></script>
+	
+	<script>
+		
+		if (window.location.hash) {
+			checkHash();
+		}
+		function checkHash() {
+			hash = +window.location.hash.split('').slice(-1)[0] + 1;
+			$('.r' + hash).show();
+			$('.normal').hide();
+			$('.iwant').show();
+			$('.r').show();
+		}
+		$('.iwant span').on('click', function() {
+			$('.x').show();
+		});
+		
+	</script>
+	<script>
+		(function(i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r;
+			i[r] = i[r] || function() {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date();
+			a = s.createElement(o),
+				m = s.getElementsByTagName(o)[0];
+			a.async = 1;
+			a.src = g;
+			m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+		ga('create', 'UA-25338682-39', 'auto');
+		ga('send', 'pageview');
+		function tracking(cat, action) {
+			ga('send', 'event', cat, action);
+		}
+		$('.iwant span')[0].addEventListener('click', function() {
+			tracking('Quiz', 'Share-Testing');
+		});
+	</script>
+	
+</body>
+</html>

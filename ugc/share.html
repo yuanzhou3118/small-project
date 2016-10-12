@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no,email=no">
+	<meta name="author" content="spchen38@163.com">
+	<title>定制邀请函</title>
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+</head>
+<body>
+	<div class="improve">
+		<div class="inner">
+			<div class="logo"><img src="assets/logo.jpg" alt=""></div>
+			<div class="s_c">
+				<div class="text"></div>
+				<div class="scene"></div>
+					<!-- user information start -->
+					<div class="bs skeleton"></div>
+					<p class="ts nickname"></p>
+					<!-- user information end -->
+					<p class="value">&ndash; <span class="ts">主场派对人气值</span> &ndash;</p>
+				<p class="tsb score"></p>
+			</div>
+			<ul class="share_btns clearfix">
+				<li class="cp"><a href="index.html"><img src="assets/share/cp.png" alt="cp"></a></li>
+				<li class="jp"><img src="assets/share/jp.png" alt="jp"></li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/lib/fastclick.min.js"></script>
+	<script type="text/javascript" src="js/lib/zepto.min.js"></script>
+	<script type="text/javascript">
+		var topic_id;
+		$(function() {
+			FastClick.attach(document.body);
+			var score = +$('.score').text();
+			$('.jp').on('click', function() {
+				$('.score').text(score + 1);
+				$.ajax({
+					url: 'api/index.php',
+					type: 'POST',
+					dataType: 'json',
+					data: {
+						action: 'save_score',
+						openid: gqs('openid'),
+						score: +$('.score').text()
+					},
+				});
+			});
+		});
+		$.ajax({
+			url: 'api/index.php',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				action: 'user_score',
+				openid: gqs('openid')
+			},
+			success: function(done) {
+				$('.skeleton').append('<img src="' + done.head_url + '">');
+				$('.nickname').text(done.nickname);
+				$('.score').text(done.score);
+				topic_id = done.topic_id.split('-');
+				showSC(topic_id);
+			},
+			error: function(fail) { console.log('Error'); }
+		});
+		function showSC(arr) {
+			var theme = arr[0],
+				scene = arr[1];
+			$('.text').append('<img src="assets/p3/theme' + theme + '.png">');
+			$('.scene').append('<img src="assets/gif/t' + theme + 's' + scene + '.gif">');
+			$('.inner').css('backgroundImage', 'url(assets/gif/bgt' + theme + '.gif)');
+		}
+		function gqs(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"),
+				r = window.location.search.substr(1).match(reg);
+			if (r != null) return decodeURIComponent(r[2]);
+		}
+	</script>
+</body>
+</html>

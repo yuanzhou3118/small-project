@@ -1,0 +1,79 @@
+/*
+ * minxin, public, variables
+ */
+
+$default-background-size: 100% 100%;
+
+// minxin
+@mixin bg($url) {
+	@include background-image(url($url));
+}
+
+@mixin size {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+@mixin pos {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+@mixin wh($w, $h) {
+	width: $w;
+	height: $h;
+}
+
+// public
+.bg-full-size {
+	@include background-size;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+
+.clearfix {
+	@include legacy-pie-clearfix;
+}
+
+.full-size {
+	@include pos;
+	@include size;
+}
+
+.fl {
+	@include float-left;
+}
+
+.tl {
+	text-align: left;
+}
+
+.tc {
+	text-align: center;
+}
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.hidden {
+	display: none;
+}
+
+// variables
+$mt: 16px;
+
+$white: #fff;
+
+$black: #000;
+
+$input-color: #002C89;
+
+$fs: 24px;
+
+$br: 50%;
+
+$border: 1px;

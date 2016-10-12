@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<meta name="csrf-token" content="{{ csrf_token() }}">-->
+    <title>后台维护</title>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="padding: 100px;">
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading">后台维护</div>
+        <!--<form action="import.php?action=import" method="post" class="form-horizontal" enctype="multipart/form-data">-->
+        <!--&lt;!&ndash;{{csrf_field()}}&ndash;&gt;-->
+        <!--<div class="form-group">-->
+        <!--<div class="col-sm-4">-->
+        <!--<input class="form-control required" type="file" id="coupon_file" name="coupon_file">-->
+        <!--</div>-->
+        <!--<div class="col-sm-8">-->
+        <!--<input type="submit" value="导入" class="btn btn-primary">-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</form>-->
+        <form id="addform" class="form-horizontal" action="import.php?action=import" method="post"
+              enctype="multipart/form-data">
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <input type="file" name="file" class="form-control required">
+                </div>
+                <div class="col-sm-8">
+                    <input type="submit" class="btn btn-primary" value="import">
+                </div>
+            </div>
+        </form>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>总数</th>
+                <th>已用数</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-1 control-label">coupon数据</label>
+                <div class="col-sm-11">
+                    <input type="button" class="btn btn-primary" value="Export"
+                           onClick="window.location.href='import.php?action=export'">
+                    <!--<a class="btn btn-primary" href="#">Export</a>-->
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">中奖用户数据</label>
+                <div class="col-sm-11">
+                    <input type="button" class="btn btn-primary" value="Export"
+                           onClick="window.location.href='import.php?action=win_user'">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="assets/js/jquery-2.1.3.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            type: 'POST',
+            url: 'import.php',
+            data: {
+                actions: 'coupon_count'
+            },
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if(data.coupon_array.length == 0){
+                    data.coupon_array = [0,0,0,0,0];
+                }
+                var myhtml = '';
+                for(var i=0;i<5;i++){
+                    myhtml='<tr><td>'+(i+1)+'</td><td>'+data.coupon_array[i]+'</td><td>'+data.user_win_array[i]+'</td></tr>';
+                    $('tbody').append(myhtml);
+                }
+            }
+        });
+    })
+</script>
+</body>
+</html>

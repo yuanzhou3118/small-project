@@ -1,0 +1,434 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+// common
+html, body {
+	@include size;
+	-webkit-user-select: none;
+	user-select: none;
+}
+.page {
+	@include size;
+	@include pos;
+	@extend .tc;
+	min-height: 100%;
+}
+.sprite {
+	@include bg('../assets/sprite.png');
+}
+.container {
+	position: relative;
+	@include bg('../assets/bg.jpg');
+}
+// warn
+.warn1, .warn2, .detail {
+	position: absolute;
+	bottom: 16px;
+	z-index: 8;
+}
+.warn1 {
+	@include wh(138px, 20px);
+	left: 12px;
+	background-position: -438px -518px;
+}
+.warn2 {
+	@include wh(102px, 21px);
+	right: 12px;
+	background-position: -440px -538px;
+}
+.warn2-index {
+	right: 368px;
+}
+.detail {
+	@include wh(78px, 22px);
+	background: url('../assets/index/detail.png');
+	right: 12px;
+}
+.detail_float {
+	background-color: rgba(0, 0, 0, .91);
+	z-index: 9;
+	.detail_title {
+		font-size: $fs * 1.6;
+		color: $white;
+		font-weight: bold;
+		padding: 40px 60px;
+		border-bottom: 1px solid rgba(255,255,255,.3);
+	}
+	.inner {
+		@include wh(540px, 850px);
+		// @include bg('../../assets/art/p1/float_bg.png');
+		// margin-top: $mt;
+		position: relative;
+		overflow: auto;
+	}
+	.d_close {
+		display: inline-block;
+		@include wh(26px, 26px);
+		@include bg('../assets/index/close_w.png');
+		// position: absolute;
+		// top: 0.26rem;
+		// left: 0.36rem;
+		float: right;
+	}
+	.terms {
+		color: $white;
+		font-size: 20px;
+		font-weight: bolder;
+		@include size;
+		// width: 4.7rem;
+		overflow: auto;
+		line-height: 32px;
+		margin-top: $mt;
+	}
+}
+// share_float
+.share_float {
+	@include size;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 9;
+	background-color: rgba(0,0,0,.85);
+	.text {
+		@include wh(110px, 340px);
+		background-position: -836px -518px;
+		position: absolute;
+		right: 32px;
+		top: 32px;
+	}
+}
+.black-bg {
+	@include pos;
+	@include size;
+	background-color: rgba(0, 0, 0, .8);
+	top: 862px;
+	z-index: 9;
+}
+// loading
+.loading {
+	@include bg('../assets/bg.jpg');
+	background-color: $black;
+	z-index: 99;
+	.flash {
+		@include wh(160px, 160px);
+		@include bg('../assets/loading.gif');
+		margin-top: $mt * 15;
+	}
+	.progress {
+		@include wh(437px, 24px);
+		border: 3px solid #26100D;
+		border-radius: 8px;
+		background-color: #0010B9;
+		position: relative;
+		overflow: hidden;
+		margin-top: $mt * 2;
+		.inner {
+			@include wh(0, 100%);
+			background-color: #E10C8E;
+			position: absolute;
+			left: 0;
+			top: 0;
+			-webkit-transition: width 0.3s;
+			transition: width 0.3s;
+		}
+	}
+	p {
+		color: $white;
+		font-size: $fs;
+		letter-spacing: 2px;
+		margin-top: $mt * 4;
+	}
+}
+// age
+#age {
+	background-color: rgba(0,0,0,.8);
+	z-index: 9;
+	.inner {
+		@include wh(556px, 585px);
+		position: relative;
+		top: 50%;
+		margin-top: -292.5px;
+		@include bg('../assets/age.jpg');
+		span, a {
+			@include wh(211px, 119px);
+			display: block;
+			position: absolute;
+			top: 274px;
+			z-index: 3;
+		}
+		.confirm {
+			// background: url(about:blank);
+			left: 56px;
+		}
+		.no {
+			left: 287px;
+		}
+	}
+}
+// index
+#index {
+	@include bg('../assets/index/bg.png');
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+	z-index: 1;
+	// .logo {
+	// 	@include wh(153px, 121px);
+	// 	background-position: 0 0;
+	// 	margin-top: 20px;
+	// }
+	.start {
+		@include wh(440px, 194px);
+		background-position: 0 0;
+		margin-top: 763px;
+	}
+}
+// answer
+#answer {
+	position: relative;
+	z-index: 2;
+	canvas {
+		display: block;
+		width: 640px;
+		height: 863px;
+		position: relative;
+		z-index: 9;
+	}
+	.next_btn {
+		@include wh(438px, 83px);
+		position: relative;
+	}
+	.next {
+		@include size;
+		background-position: 0 -194px;
+	}
+	.next-gray {
+		background-position: 0 -849px;
+	}
+	.next-check {
+		background-position: 0 -683px;
+	}
+	.next-check-gray {
+		background-position: 0 -932px;
+	}
+	.noSubmit {
+		position: absolute;
+		top: 0;
+		left: 0;
+		@include size;
+		z-index: 2;
+	}
+	p {
+		color: $white;
+		font-size: 22px;
+		font-weight: 100;
+		letter-spacing: 1.2px;
+		margin-top: $mt * 1.4;
+	}
+	.waiter {
+		@include wh(188px, 550px);
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		z-index: 10;
+		img {
+			@include size;
+		}
+	}
+}
+// result
+#result {
+	z-index: 3;
+	.title, .picture {
+		@include wh(434px, 241px);
+		margin-top: $mt * 2;
+		img {
+			display: inline-block;
+		}
+	}
+	.picture {
+		@include wh(584px, 537px);
+		margin-top: $mt * 0.5;
+	}
+	.btns {
+		@include wh(560px, 120px);
+		margin-top: $mt * 0.5;
+		li {
+			@include wh(272px, 120px);
+			float: left;
+			&.lottery {
+				background-position: 0 -397px;
+			}
+			&.share {
+				margin-left: 12px;
+				background-position: 0 -278px;
+			}
+		}
+	}
+	.go {
+		display: inline-block;
+		@include wh(272px, 120px);
+		@include bg('../assets/share/go.png');
+	}
+}
+// submit
+#submit {
+	z-index: 4;
+	.title {
+		@include wh(420px, 120px);
+		background-position: -441px 0;
+		margin-top: $mt * 9.6;
+	}
+	.validate {
+		@include wh(441px, 221px);
+		margin-top: $mt * 6;
+		input {
+			border: 3px solid $white;
+			color: $white;
+			font-size: 34px;
+			letter-spacing: 2px;
+		}
+		.code {
+			position: relative;
+			@include wh(441px, 99px);
+			margin-top: 19px;
+		}
+		.mobile {
+			@include wh(100%, 102px);
+		}
+		.captcha {
+			@include wh(165px, 99px);
+			@include bg('../assets/submit/captcha.png');
+			letter-spacing: 2px;
+			float: left;
+		}
+		.send {
+			@include wh(256px, 99px);
+			color: #000537;
+			background-color: $white;
+			font-size: 34px;
+			line-height: 100px;
+			letter-spacing: 2px;
+			float: left;
+			margin-left: 20px;
+		}
+		.check {
+			position: absolute;
+			@include wh(256px, 99px);
+			top: 0;
+			right: 0;
+			border: 0;
+			opacity: 0;
+			z-index: 1;
+		}
+	}
+	.lottery {
+		@include wh(438px, 83px);
+		background-position: 0 -518px;
+		margin-top: $mt * 6;
+	}
+}
+// info
+#info {
+	min-height: 100%;
+	z-index: 5;
+	.title {
+		@include wh(567px, 166px);
+		background-position: 0 -683px;
+		margin-top: $mt * 4.5;
+	}
+	.picture {
+		@include wh(441px, 358px);
+	}
+	.title, .picture {
+		img {
+			display: inline-block;
+			position: relative;
+			top: 50%;
+			-webkit-transform: translateY(-50%);
+			transform: translateY(-50%);
+		}
+	}
+	.win {
+		@include wh(441px, auto);
+		// margin-top: 
+		input {
+			@include wh(100%, 102px);
+			border: 3px solid $white;
+			color: $white;
+			font-size: 34px;
+			letter-spacing: 2px;
+		}
+		.address {
+			margin-top: $mt * 1.6;
+		}
+	}
+	.submit {
+		@include wh(438px, 83px);
+		background-position: 0 -600px;
+		margin-top: $mt * 2.2;
+	}
+}
+// hint
+#hint {
+	z-index: 6;
+	div {
+		margin-top: $mt * 16;
+	}
+	.success {
+		@include wh(499px, 120px);
+		background-position: -440px -120px;
+	}
+	.fail {
+		@include size;
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin-top: 0;
+		.text {
+			@include wh(320px, 166px);
+			background-position: -440px -240px;
+			margin-top: $mt * 8;
+		}
+		.coupon {
+			@include wh(441px, 227px);
+			@include bg('../assets/hint/coupon_25.png');
+			margin-top: 100px;
+		}
+		.coupon_50 {
+			@include bg('../assets/hint/coupon_50.png');
+		}
+		.getCoupon {
+			display: inline-block;
+			@include wh(438px, 83px);
+			background-position: 0 -766px;
+			margin-top: 105px;
+		}
+	}
+	.played {
+		@include size;
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin-top: 0;
+		.logo {
+			@include wh(132px, 104px);
+			background-position: -440px -559px;
+			margin-top: $mt * 4;
+		}
+		.text {
+			@include wh(506px, 112px);
+			background-position: -440px -406px;
+			margin-top: $mt * 4;
+		}
+		.people {
+			@include wh(613px, 568px);
+			@include bg('../assets/hint/people.png');
+			position: absolute;
+			right: 0;
+			bottom: 0;
+		}
+	}
+}

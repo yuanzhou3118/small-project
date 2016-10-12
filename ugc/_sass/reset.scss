@@ -1,0 +1,29 @@
+// reset
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-tap-highlight-color: transparent;
+	tap-highlight-color: transparent;
+}
+
+a, input {
+	text-decoration: none;
+	color: #000;
+	outline: none;
+	-webkit-appearance: none;
+	appearance: none;
+	border: none;
+	background: transparent;
+}
+
+a:focus, input:focus {
+	outline: none;
+}
+
+ul, ol {
+	list-style: none;
+}
+
+img {
+	border: 0;
+}
